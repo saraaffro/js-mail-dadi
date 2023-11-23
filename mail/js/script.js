@@ -7,36 +7,42 @@ const sendButton = document.getElementById("sendbutton");
 
 
 // creare lista email che possono accedere
-const mailList = ["mariorossi.gmail.com", "nomecognome.gmail.com", "azienda.info.it", "benvenuto.gmail.com", "buongiorno.gmail.com", "ciao.gmail.com"];
-// non si può mettere @
-console.log(mailList);
+const mailList = ["mariorossi@gmail.com", "nomecognome@gmail.com", "azienda@info.it", "benvenuto@gmail.com", "buongiorno@gmail.com", "ciao@gmail.com"];
+// console.log(mailList);
 
-
-// chiedere all'utente la sua mail
-const userMail = inputMail.value;
-console.log(userMail);
-
-let text;
 
 // controllare se l'utente può accedere, e scrivere un messaggio sull'esito del controllo
-for (i = 0; i < mailList.length; i++){
+// funzionamento click
+sendButton.addEventListener("click",
 
-    let mailElement = mailList[i];
+    function(){
 
-     // funzionamento click
-     sendButton.addEventListener("click",
+        let emailFound = false;
+    
+        // chiedere all'utente la sua mail
+        let userMail = inputMail.value;
+        console.log(userMail);
+     
+        // controllo se l'email è nella lista
+        for(let i = 0; i < mailList.length; i++){
+            
+            // prendo elemento iesimo della lista
+            let mailElement = mailList[i];
 
-     function(){
-         document.getElementById("description").innerHTML = text;
-     }
-     );
+            if(mailElement.toLowerCase() === userMail.toLowerCase()){
+                emailFound = true;
+            }
+        }
+        
 
-    if(userMail === mailElement){
-        text = "La tua mail risulta in quelle registrate, bentornato, puoi accedere a questo sito";
+        if(emailFound === true){
+            alert("La tua email può accedere, bentornato!")
+        }
+        else{
+            alert("La tua email non può accedere, riprova")
+        }
     }
-    else{
-        text = "La tua mail non corrisponde a quelle cha hanno accesso al sito, perciò non puoi accedervi";
-    }
-}
+);
+
 
 
